@@ -1,0 +1,41 @@
+<div mat-dialog-title>
+  <h1>Product Form</h1>
+</div>
+<form [formGroup]="prodForm" (ngSubmit)="onFormSubmit()">
+  <div mat-dialog-content class="content">
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" placeholder="EX. Elhanan" formControlName="name"/>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Type</mat-label>
+        <input matInput type="text" placeholder="EX. urgent" formControlName="type"/>
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <input matInput type="text" placeholder="EX. some description" formControlName="description"/>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Price</mat-label>
+        <input
+          matInput
+          type="number"
+          class="example-right-align"
+          placeholder="0.0"
+          formControlName="price"
+        />
+        <span matTextPrefix>₪&nbsp;</span>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-raised-button type="button">cancel</button>
+    <button mat-raised-button color="primary" type="submit">save</button>
+  </div>
+</form>
