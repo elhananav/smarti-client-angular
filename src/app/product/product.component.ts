@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from '../services/product.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
@@ -18,10 +18,10 @@ export class ProductComponent implements OnInit{
     @Inject(MAT_DIALOG_DATA) public data: any
     ) {
     this.prodForm = this._fb.group({
-      name: '',
-      type: '',
-      description: '',
-      price: '',
+      name: ['', Validators.required],
+      type: ['', Validators.required],
+      description: ['', Validators.required],
+      price: ['', [Validators.required, Validators.min(0)]]
     });
   }
 

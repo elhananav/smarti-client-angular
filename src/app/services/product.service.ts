@@ -9,6 +9,8 @@ export class ProductService {
 
   constructor(private _http: HttpClient) { }
 
+  baseUrl = 'http://localhost:8000/api';
+
   addProduct(data: any): Observable<any> {
     return this._http.post('http://localhost:8000/api/product', data);
   }
@@ -26,5 +28,9 @@ export class ProductService {
   updateProduct(id: number, data: any): Observable<any> {
     
     return this._http.put(`http://localhost:8000/api/product/${id}`, data);
+  }
+
+  searchProductsByName(query: string): Observable<any> {
+    return this._http.get<any[]>(`${this.baseUrl}/product/search/${query}`);
   }
 }

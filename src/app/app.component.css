@@ -7,3 +7,24 @@
     margin: 0 auto;
     max-width: 1248px;
   }
+
+  .search-container {
+    padding-top: 10px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .flex-grow {
+    flex-grow: 1;
+  }
+  
+  .mat-form-field {
+    width: 100%;
+    margin-right: 10px; /* Adjust margin as needed */
+  }
+  
+  .button-search {
+    width: auto;
+    min-width: 100px; /* Adjust button width as needed */
+  }
+  

@@ -2,8 +2,7 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ProductComponent } from './product/product.component';
 import { ProductService } from './services/product.service';
-import { MatTableDataSource } from '@angular/material/table';
-import { Product } from 'src/models/product';
+
 
 
 @Component({
@@ -14,9 +13,7 @@ import { Product } from 'src/models/product';
 export class AppComponent implements OnInit{
   title = 'smarti-client-angular';
 
-
-  products: Product[] = [];
-  // dataSource!: MatTableDataSource<any>;
+  searchTerm: any;
   dataSource: any;
 
   displayedColumns: string[] = [
@@ -37,7 +34,6 @@ export class AppComponent implements OnInit{
   
 
   ngOnInit(): void {
-    console.log("in ngOnInit");
     this.getProducts();  
   }
 
@@ -52,13 +48,16 @@ export class AppComponent implements OnInit{
     });
   }
 
+  resetSearch(): void {
+    this.searchTerm = '';
+    this.getProducts();
+  }
+  
+
   getProducts() {
     this._prodService.getProducts().subscribe({
       next: (res: any) => {
         this.dataSource = res;
-        // this.dataSource = new MatTableDataSource(res);
-        // this.products = res; // Assuming res is an array of products
-        console.log(this.dataSource.data);
       },
       error: (err: any) => {
         console.log(err);
@@ -66,13 +65,26 @@ export class AppComponent implements OnInit{
     });
   }
 
-  deleteProduct(id: number) {
-    this._prodService.deleteProduct(id).subscribe({
-      next: (res) => {
-        this.getProducts();
+  searchProducts(name: string) {
+    this._prodService.searchProductsByName(name).subscribe({
+      next: (res: any) => {
+        this.dataSource = res;
       },
-      error: console.log,
-    })
+      error: (err: any) => {
+        console.log(err);
+      },
+    });
+  }
+  deleteProduct(id: number) {
+    const confirmation = window.confirm('Are you sure you want to delete this product?');
+    if(confirmation) {
+      this._prodService.deleteProduct(id).subscribe({
+        next: (res) => {
+          this.getProducts();
+        },
+        error: console.log,
+      })
+    }
   }
 
   openEditForm(data: any) {
@@ -88,4 +100,6 @@ export class AppComponent implements OnInit{
     });
 
   }
+
+
 }
