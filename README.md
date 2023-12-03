@@ -6,11 +6,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Clone the repository
 
-    git clone https://github.com/elhananav/laravel-api.git
+    git clone https://github.com/elhananav/smarti-client-angular.git
 
 Switch to the repo folder
 
-    cd laravel-api
+    cd smarti-client-angular
 
 Install all the dependencies using npm
 
